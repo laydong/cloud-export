@@ -6,7 +6,6 @@ import (
 	"cloud-export/model/excel"
 	"cloud-export/model/helper"
 	"cloud-export/server"
-	util "cloud-export/utils"
 	"encoding/json"
 	"fmt"
 	"github.com/laydong/toolpkg"
@@ -160,7 +159,7 @@ func (w *HttpWorker) work() {
 	if excelTmpPath == "" {
 		excelTmpPath = "/home/outexcel"
 	}
-	err = util.FileExists(excelTmpPath)
+	err = helper.TouchDir(excelTmpPath)
 	if err != nil {
 		logx.ErrorF(ctx, "文件夹创建失败："+err.Error())
 		return
@@ -271,8 +270,6 @@ func (w *HttpWorker) work() {
 	if err != nil {
 		logx.ErrorF(ctx, "更新数据失败："+err.Error())
 	}
-	// 创建文件数据
-
 	w.req.Notify(ctx, expLog.Callback, taskID)
 	//dt := carbon.Now().DiffInSecondsWithAbs(st)
 	//log.Printf("[%s] 任务完成 耗时%ds", taskID, dt)

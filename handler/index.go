@@ -34,6 +34,35 @@ func ExportSHttp(c *gin.Context) {
 	utils.OkWithData(c, data)
 }
 
+// ExportSRaw 数据导出excel
+func ExportSRaw(c *gin.Context) {
+	param := request.ExpSRawParam{}
+	if err := c.ShouldBind(&param); err != nil {
+		utils.FailWithMessage(c, err.Error())
+		return
+	}
+	data, err := server.HandelSRaw(c, &param)
+	if err != nil {
+		utils.FailWithMessage(c, err.Error())
+		return
+	}
+	utils.OkWithData(c, data)
+}
+
+func ExportDetail(c *gin.Context) {
+	key := c.Query("key")
+	if key == "" {
+		utils.FailWithMessage(c, "key 不能为空")
+		return
+	}
+	data, err := server.Detail(c, key)
+	if err != nil {
+		utils.FailWithMessage(c, err.Error())
+		return
+	}
+	utils.OkWithData(c, data)
+}
+
 //// ExportSRaw 源数据导出excel
 //func ExportSRaw(c *gin.Context) {
 //	param := valid.ExpSRawParam{}

@@ -26,6 +26,7 @@ func main() {
 	}
 	//开启处理协程
 	go new(task.HttpWorker).Run(conf.App.TaskPool.HttpWorker)
+	go new(task.RawWorker).Run(conf.App.TaskPool.RowWorker)
 	// 初始化操作
 	gin.SetMode(conf.App.AppConf.AppMode)
 	router.Routers().Run(conf.App.AppConf.Port)

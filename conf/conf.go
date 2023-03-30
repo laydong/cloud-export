@@ -63,6 +63,7 @@ func initConf() {
 		},
 		Upload: Upload{
 			FileUrl: viper.GetString("upload.file_url"),
+			RowFile: viper.GetString("upload.row_file"),
 		},
 	}
 }
@@ -123,4 +124,5 @@ type TaskPool struct {
 
 type Upload struct {
 	FileUrl string `json:"file_url"`
+	RowFile string `json:"row_file"`
 }

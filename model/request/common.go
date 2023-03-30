@@ -14,3 +14,12 @@ type ExpSHttpParam struct {
 	CallBack   string     `json:"callback" form:"callback" uri:"callback"`
 	SourceHTTP SourceHTTP `json:"source_http" form:"source_http" uri:"source_http" binding:"required"`
 }
+
+type ExpSRawParam struct {
+	Timestamp int64  `json:"timestamp"`
+	EXTType   string `json:"ext_type"`
+	Title     string `json:"title"`
+	UserID    string `json:"user_id"`
+	CallBack  string `json:"call_back"`
+	SourceRaw string `json:"source_raw"`
+}
