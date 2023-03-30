@@ -64,11 +64,11 @@ func FileExists(file string) bool {
 
 // TouchDir 创建文件夹
 func TouchDir(path string) error {
-	dir, _ := filepath.Split(path)
-	if FileExists(dir) {
+	//dir, _ := filepath.Split(path)
+	if FileExists(path) {
 		return nil
 	}
-	err := os.MkdirAll(dir, 0666)
+	err := os.MkdirAll(path, os.ModePerm)
 	return err
 }
 
